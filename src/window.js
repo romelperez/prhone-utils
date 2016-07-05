@@ -3,6 +3,8 @@ const windowUtils = {
   /**
    * Get the usable browser window dimentions.
    *
+   * @memberof PrhoneUtils
+   *
    * @param  {Number} wMin - Minimum width.
    * @param  {Number} hMin - Minimum height.
    * @param  {Number} wMax - Maximum width.
@@ -74,6 +76,8 @@ const windowUtils = {
   /**
    * Get a window content height.
    *
+   * @memberof PrhoneUtils
+   *
    * @param  {Window} [win] - Window object.
    * @return {Number}
    */
@@ -88,6 +92,8 @@ const windowUtils = {
 
   /**
    * Get window frame content height.
+   *
+   * @memberof PrhoneUtils
    *
    * @param  {Node} frame - Window frame object.
    * @return {Number}
@@ -107,13 +113,15 @@ const windowUtils = {
   },
 
   /**
-   * Changes <iframe> DOM node height to fit the content propertly. A default
+   * Changes `<iframe>` DOM node height to fit the content propertly. A default
    * minimum height can be set.
+   *
+   * @memberof PrhoneUtils
    *
    * @param  {String} iframe - Iframe node element.
    * @param  {Object} [conf] - Changes settings.
    * @param  {String} [conf.level] - Where does the iframe resides?
-   * 'parent' | 'top' or by default, the same window.
+   * 'parent', 'top' or by default, the same window.
    * @param  {Number} [conf.min] - Minimum height to set. Default 300 pixels.
    * @param  {Number} [conf.plus] - Pixels to add/substract to the final height.
    * @return {Number} - Final height set in pixels.
@@ -160,6 +168,8 @@ const windowUtils = {
   /**
    * Get the position of the document respecting the scroll.
    *
+   * @memberof PrhoneUtils
+   *
    * @return {Object} - { Number x, Number y }
    */
   getScrollOffset () {
@@ -179,6 +189,8 @@ const windowUtils = {
 
   /**
    * Animate the scroll to where an element is located.
+   *
+   * @memberof PrhoneUtils
    *
    * @param  {Object|jQuery} conf
    * @param  {jQuery} conf.$el

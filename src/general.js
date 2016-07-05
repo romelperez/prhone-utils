@@ -4,6 +4,8 @@ module.exports = {
    * Returns a function that will be called once in an interval of time right
    * away when it is called.
    *
+   * @memberof PrhoneUtils
+   *
    * @param  {Function} func - The function to throttle.
    * @param  {Number} interval - Time in milliseconds.
    * @param  {Function} gate - The function to validate the throttle. If it return

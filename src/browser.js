@@ -2,6 +2,8 @@ module.exports = {
 
   /**
    * If the window is mobile.
+   *
+   * @memberof PrhoneUtils
    * @type {Boolean}
    */
   isMobile: function () {
@@ -14,12 +16,16 @@ module.exports = {
 
   /**
    * Browser is old.
+   *
+   * @memberof PrhoneUtils
    * @type {Boolean}
    */
   isOld: !('querySelector' in document && 'localStorage' in window && 'addEventListener' in window),
 
   /**
    * If the browser is IE and the value is the version. Otherwise, it is false.
+   *
+   * @memberof PrhoneUtils
    * @type {Number}
    */
   isIE: (function () {
@@ -37,6 +43,8 @@ module.exports = {
 
   /**
    * If the browser is iOS.
+   *
+   * @memberof PrhoneUtils
    * @type {Boolean}
    */
   isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
