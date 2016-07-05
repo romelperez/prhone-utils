@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/romelperez/prhone-log.git"
+    "url": "git+https://github.com/romelperez/prhone-utils.git"
   },
   "keywords": [
     "browser",
