@@ -1,6 +1,6 @@
 # PRHONE Utils
 
-JavaScript browser utilities.
+Browser JavaScript utilities.
 
 ## License
 
