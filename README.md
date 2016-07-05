@@ -15,7 +15,7 @@ $ npm install --save-dev prhone-utils
 - General functions
   - Throttle functions on time intervals
 
-See [API](./API).
+See [API](./API.md).
 
 ## License
 
