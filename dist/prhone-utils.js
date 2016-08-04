@@ -1,98 +1,12 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var hasOwn = Object.prototype.hasOwnProperty;
-var toStr = Object.prototype.toString;
-
-var isArray = function isArray(arr) {
-	if (typeof Array.isArray === 'function') {
-		return Array.isArray(arr);
-	}
-
-	return toStr.call(arr) === '[object Array]';
-};
-
-var isPlainObject = function isPlainObject(obj) {
-	if (!obj || toStr.call(obj) !== '[object Object]') {
-		return false;
-	}
-
-	var hasOwnConstructor = hasOwn.call(obj, 'constructor');
-	var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
-	// Not own constructor property must be Object
-	if (obj.constructor && !hasOwnConstructor && !hasIsPrototypeOf) {
-		return false;
-	}
-
-	// Own properties are enumerated firstly, so to speed up,
-	// if last one is own, then all properties are own.
-	var key;
-	for (key in obj) {/**/}
-
-	return typeof key === 'undefined' || hasOwn.call(obj, key);
-};
-
-module.exports = function extend() {
-	var options, name, src, copy, copyIsArray, clone,
-		target = arguments[0],
-		i = 1,
-		length = arguments.length,
-		deep = false;
-
-	// Handle a deep copy situation
-	if (typeof target === 'boolean') {
-		deep = target;
-		target = arguments[1] || {};
-		// skip the boolean and the target
-		i = 2;
-	} else if ((typeof target !== 'object' && typeof target !== 'function') || target == null) {
-		target = {};
-	}
-
-	for (; i < length; ++i) {
-		options = arguments[i];
-		// Only deal with non-null/undefined values
-		if (options != null) {
-			// Extend the base object
-			for (name in options) {
-				src = target[name];
-				copy = options[name];
-
-				// Prevent never-ending loop
-				if (target !== copy) {
-					// Recurse if we're merging plain objects or arrays
-					if (deep && copy && (isPlainObject(copy) || (copyIsArray = isArray(copy)))) {
-						if (copyIsArray) {
-							copyIsArray = false;
-							clone = src && isArray(src) ? src : [];
-						} else {
-							clone = src && isPlainObject(src) ? src : {};
-						}
-
-						// Never move original objects, clone them
-						target[name] = extend(deep, clone, copy);
-
-					// Don't bring in undefined values
-					} else if (typeof copy !== 'undefined') {
-						target[name] = copy;
-					}
-				}
-			}
-		}
-	}
-
-	// Return the modified object
-	return target;
-};
-
-
-},{}],2:[function(require,module,exports){
-'use strict';
-
 module.exports = {
 
   /**
    * If the window is mobile.
+   *
+   * @memberof PrhoneUtils
    * @type {Boolean}
    */
   isMobile: function () {
@@ -105,12 +19,16 @@ module.exports = {
 
   /**
    * Browser is old.
+   *
+   * @memberof PrhoneUtils
    * @type {Boolean}
    */
   isOld: !('querySelector' in document && 'localStorage' in window && 'addEventListener' in window),
 
   /**
    * If the browser is IE and the value is the version. Otherwise, it is false.
+   *
+   * @memberof PrhoneUtils
    * @type {Number}
    */
   isIE: function () {
@@ -125,81 +43,43 @@ module.exports = {
 
   /**
    * If the browser is iOS.
+   *
+   * @memberof PrhoneUtils
    * @type {Boolean}
    */
   isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
 };
 
-},{}],3:[function(require,module,exports){
-"use strict";
-
-module.exports = {
-
-  /**
-   * Returns a function that will be called once in an interval of time right
-   * away when it is called.
-   *
-   * @param  {Function} func - The function to throttle.
-   * @param  {Number} interval - Time in milliseconds.
-   * @param  {Function} gate - The function to validate the throttle. If it return
-   * true, we prevent the throttle.
-   *
-   * @return {Function}
-   */
-  throttle: function throttle() {
-    var func = arguments.length <= 0 || arguments[0] === undefined ? function () {} : arguments[0];
-    var interval = arguments.length <= 1 || arguments[1] === undefined ? 1000 : arguments[1];
-    var gate = arguments.length <= 2 || arguments[2] === undefined ? function () {} : arguments[2];
-
-
-    var available = true;
-    var queue = false;
-
-    return function () {
-      var _this = this;
-
-      var args = arguments;
-
-      var call = function call() {
-
-        available = false;
-        func.apply(_this, args);
-
-        setTimeout(function () {
-          if (queue) {
-            queue = false;
-            call();
-          } else {
-            available = true;
-          }
-        }, interval);
-      };
-
-      if (gate() || available) {
-        call();
-      } else {
-        queue = true;
-      }
-    };
-  }
-
-};
-
-},{}],4:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
 
-var extend = require('extend');
 var browser = require('./browser');
 var win = require('./window');
-var general = require('./general');
 
-var PrhoneUtils = extend({}, browser, win, general);
+/**
+ * @name PrhoneUtils
+ * @type {Object}
+ *
+ * Browser JavaScript utilities.
+ */
+var PrhoneUtils = {};
+
+var extend = function extend(obj) {
+  for (var p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      PrhoneUtils[p] = obj[p];
+    }
+  }
+};
+
+extend(browser);
+extend(win);
 
 window.PrhoneUtils = PrhoneUtils;
 
 module.exports = PrhoneUtils;
 
-},{"./browser":2,"./general":3,"./window":5,"extend":1}],5:[function(require,module,exports){
+},{"./browser":1,"./window":3}],3:[function(require,module,exports){
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -208,6 +88,8 @@ var windowUtils = {
 
   /**
    * Get the usable browser window dimentions.
+   *
+   * @memberof PrhoneUtils
    *
    * @param  {Number} wMin - Minimum width.
    * @param  {Number} hMin - Minimum height.
@@ -282,6 +164,8 @@ var windowUtils = {
   /**
    * Get a window content height.
    *
+   * @memberof PrhoneUtils
+   *
    * @param  {Window} [win] - Window object.
    * @return {Number}
    */
@@ -293,6 +177,8 @@ var windowUtils = {
 
   /**
    * Get window frame content height.
+   *
+   * @memberof PrhoneUtils
    *
    * @param  {Node} frame - Window frame object.
    * @return {Number}
@@ -311,13 +197,15 @@ var windowUtils = {
 
 
   /**
-   * Changes <iframe> DOM node height to fit the content propertly. A default
+   * Changes `<iframe>` DOM node height to fit the content propertly. A default
    * minimum height can be set.
+   *
+   * @memberof PrhoneUtils
    *
    * @param  {String} iframe - Iframe node element.
    * @param  {Object} [conf] - Changes settings.
    * @param  {String} [conf.level] - Where does the iframe resides?
-   * 'parent' | 'top' or by default, the same window.
+   * 'parent', 'top' or by default, the same window.
    * @param  {Number} [conf.min] - Minimum height to set. Default 300 pixels.
    * @param  {Number} [conf.plus] - Pixels to add/substract to the final height.
    * @return {Number} - Final height set in pixels.
@@ -366,6 +254,8 @@ var windowUtils = {
   /**
    * Get the position of the document respecting the scroll.
    *
+   * @memberof PrhoneUtils
+   *
    * @return {Object} - { Number x, Number y }
    */
   getScrollOffset: function getScrollOffset() {
@@ -382,6 +272,8 @@ var windowUtils = {
 
   /**
    * Animate the scroll to where an element is located.
+   *
+   * @memberof PrhoneUtils
    *
    * @param  {Object|jQuery} conf
    * @param  {jQuery} conf.$el
@@ -447,4 +339,4 @@ var windowUtils = {
 
 module.exports = windowUtils;
 
-},{}]},{},[4]);
+},{}]},{},[2]);
