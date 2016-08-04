@@ -12,8 +12,6 @@ $ npm install --save-dev prhone-utils
 - Get window and frame dimentions
 - Set `<iframe>` dimentions
 - Get and move scroll offets
-- General functions
-  - Throttle functions on time intervals
 
 See [API](./API.md).
 

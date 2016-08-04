@@ -1,7 +1,7 @@
 <a name="PrhoneUtils"></a>
 
 ## PrhoneUtils : <code>Object</code>
-PRHONE Utilities.
+Browser JavaScript utilities.
 
 **Kind**: global variable  
 
@@ -10,7 +10,6 @@ PRHONE Utilities.
     * [.isOld](#PrhoneUtils.isOld) : <code>Boolean</code>
     * [.isIE](#PrhoneUtils.isIE) : <code>Number</code>
     * [.isIOS](#PrhoneUtils.isIOS) : <code>Boolean</code>
-    * [.throttle(func, interval, gate)](#PrhoneUtils.throttle) ⇒ <code>function</code>
     * [.getDims(wMin, hMin, wMax, hMax)](#PrhoneUtils.getDims) ⇒ <code>Object</code>
     * [.getHeight([win])](#PrhoneUtils.getHeight) ⇒ <code>Number</code>
     * [.getFrameHeight(frame)](#PrhoneUtils.getFrameHeight) ⇒ <code>Number</code>
@@ -42,20 +41,6 @@ If the browser is IE and the value is the version. Otherwise, it is false.
 If the browser is iOS.
 
 **Kind**: static property of <code>[PrhoneUtils](#PrhoneUtils)</code>  
-<a name="PrhoneUtils.throttle"></a>
-
-### PrhoneUtils.throttle(func, interval, gate) ⇒ <code>function</code>
-Returns a function that will be called once in an interval of time right
-away when it is called.
-
-**Kind**: static method of <code>[PrhoneUtils](#PrhoneUtils)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| func | <code>function</code> | The function to throttle. |
-| interval | <code>Number</code> | Time in milliseconds. |
-| gate | <code>function</code> | The function to validate the throttle. If it return true, we prevent the throttle. |
-
 <a name="PrhoneUtils.getDims"></a>
 
 ### PrhoneUtils.getDims(wMin, hMin, wMax, hMax) ⇒ <code>Object</code>
