@@ -6,7 +6,7 @@
 Browser JavaScript utilities.
 
 ```bash
-$ npm install --save-dev prhone-utils
+$ npm install --save prhone-utils
 ```
 
 - Detect some browsers and some of its capabilities
