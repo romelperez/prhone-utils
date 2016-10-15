@@ -1,6 +1,6 @@
 {
   "name": "prhone-utils",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Browser JavaScript utilities",
   "main": "bundle/index.js",
   "repository": {
@@ -18,9 +18,6 @@
     "url": "https://github.com/romelperez/prhone-utils/issues"
   },
   "homepage": "https://github.com/romelperez/prhone-utils#readme",
-  "peerDependencies": {
-    "jquery": "*"
-  },
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-preset-es2015": "^6.5.0",
